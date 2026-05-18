@@ -309,7 +309,6 @@ class TetrisEnv(gym.Env):
                 # La pieza toca el fondo o otra pieza
                 self._place_piece()
                 lines = self._clear_lines()
-                step_lines = lines
                 self.lines_cleared += lines
                 self.score += lines * 100  # 100 puntos por línea
                 
@@ -320,7 +319,6 @@ class TetrisEnv(gym.Env):
                 if self._check_collision():
                     obs = self._get_obs()
                     info = self._get_info()
-                    info['step_lines_cleared'] = step_lines
                     return obs, self.score, True, False, info
                     
         elif action == 5:  # Hard drop (caída rápida)
@@ -330,7 +328,6 @@ class TetrisEnv(gym.Env):
             # Colocar pieza
             self._place_piece()
             lines = self._clear_lines()
-            step_lines = lines
             self.lines_cleared += lines
             self.score += lines * 100
             
@@ -341,7 +338,6 @@ class TetrisEnv(gym.Env):
             if self._check_collision():
                 obs = self._get_obs()
                 info = self._get_info()
-                info['step_lines_cleared'] = step_lines
                 return obs, self.score, True, False, info
         
         obs = self._get_obs()
@@ -349,7 +345,6 @@ class TetrisEnv(gym.Env):
         terminated = False
         truncated = False
         info = self._get_info()
-        info['step_lines_cleared'] = step_lines
         
         return obs, reward, terminated, truncated, info
  
@@ -567,8 +562,6 @@ def main():
                     print("\n¡Nuevo juego iniciado!")
                 else:
                     break
-
-            print(info)
                     
         except ValueError:
             print("Entrada inválida. Introduce un número del 0 al 5, o 'q' para salir.")

@@ -567,8 +567,6 @@ def main():
                     print("\n¡Nuevo juego iniciado!")
                 else:
                     break
-
-            print(info)
                     
         except ValueError:
             print("Entrada inválida. Introduce un número del 0 al 5, o 'q' para salir.")
