@@ -143,7 +143,7 @@ class TetrisEnv(gym.Env):
  
         # Espacio de observación
         self.observation_space = spaces.Dict({
-            "board": spaces.Box(low=0, high=1, shape=(self.n, self.m), dtype=np.uint8),
+            "board": spaces.Box(low, high=1,=0 shape=(self.n, self.m), dtype=np.uint8),
             "current_piece": spaces.Discrete(7),
             "next_piece": spaces.Discrete(7)
         })
@@ -405,12 +405,6 @@ class TetrisEnv(gym.Env):
         if self.screen is None:
             return
         
-        # Procesar los eventos de pygame para que no se congele (Not Responding)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
         self.screen.fill(COLORS['background'])
         
         # Dibujar el tablero con piezas colocadas

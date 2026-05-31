@@ -405,12 +405,6 @@ class TetrisEnv(gym.Env):
         if self.screen is None:
             return
         
-        # Procesar los eventos de pygame para que no se congele (Not Responding)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
         self.screen.fill(COLORS['background'])
         
         # Dibujar el tablero con piezas colocadas
